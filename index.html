@@ -470,11 +470,11 @@ updateHUD(0,false);
 
 /* scroll + swipe + keys */
 let wLock=false;
-window.addEventListener('wheel',e=>{if(wLock)return;wLock=true;setTimeout(()=>wLock=false,1000);manualNav(e.deltaY>0?1:-1);},{passive:true});
+window.addEventListener('wheel',e=>{if(autoOn)return;if(wLock)return;wLock=true;setTimeout(()=>wLock=false,1000);manualNav(e.deltaY>0?1:-1);},{passive:true});
 let tY=null;
 window.addEventListener('touchstart',e=>{tY=e.touches[0].clientY;},{passive:true});
-window.addEventListener('touchend',e=>{if(tY===null)return;const dy=tY-e.changedTouches[0].clientY;if(Math.abs(dy)>45)manualNav(dy>0?1:-1);tY=null;},{passive:true});
-window.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')manualNav(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')manualNav(-1);});
+window.addEventListener('touchend',e=>{if(autoOn)return;if(tY===null)return;const dy=tY-e.changedTouches[0].clientY;if(Math.abs(dy)>45)manualNav(dy>0?1:-1);tY=null;},{passive:true});
+window.addEventListener('keydown',e=>{if(autoOn)return;if(e.key==='ArrowDown'||e.key==='ArrowRight')manualNav(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')manualNav(-1);});
 
 /* auto-scroll */
 const pfEl=document.getElementById('pf'),cdEl=document.getElementById('cd');
