@@ -463,8 +463,7 @@ function pageNav(name){
 
 /* build dots */
 const rdotsEl=document.getElementById('rdots');
-SECS.forEach((_,i)=>{const d=document.createElement('div');d.className='rdot'+(i===0?' active':'');d.onclick=()=>goTo(i);rdotsEl.appendChild(d);});
-
+SECS.forEach((_,i)=>{const d=document.createElement('div');d.className='rdot'+(i===0?' active':'');d.onclick=()=>{if(!autoOn)goTo(i);};rdotsEl.appendChild(d);});
 /* init first section */
 updateHUD(0,false);
 
